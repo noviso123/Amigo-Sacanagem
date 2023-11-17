@@ -95,10 +95,10 @@ button:hover {
     }
     
     .container {
-        max-width: 60%; /* Full width for smaller screens */
+        max-width: 10%; /* Full width for smaller screens */
     }
     
     .participante {
-        width: 60%; /* Full width for smaller screens */
+        width: 10%; /* Full width for smaller screens */
     }
 }
