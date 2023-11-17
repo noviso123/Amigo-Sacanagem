@@ -87,18 +87,3 @@ button:hover {
     margin-top: 40px;
 	background-image: url("https://pa1.aminoapps.com/6711/b8b0d3d214927df0d7076b14579d36fa2240d5e8_hq.gif");
 }
-
-/* Media Query for screens smaller than 600px */
-@media (max-width: 480px) {
-    body {
-        background-size: contain;
-    }
-    
-    .container {
-        max-width: 10%; /* Full width for smaller screens */
-    }
-    
-    .participante {
-        width: 10%; /* Full width for smaller screens */
-    }
-}
