@@ -1,6 +1,6 @@
 h1 {
-    font-family: 'Comic Sans MS', sans-serif;
-    font-size: 27px;
+	font-family: 'Comic Sans MS', sans-serif;
+	font-size: 40px ;
     margin: 0;
     padding: 0;
     display: flex;
@@ -10,7 +10,7 @@ h1 {
 
 body {
     font-family: 'Comic Sans MS', sans-serif;
-    font-size: 15px;
+	font-size: 22px ;
     color: #00f;
     margin: 0;
     padding: 0;
@@ -25,7 +25,6 @@ body {
 .container {
     max-width: 600px;
     text-align: center;
-    padding: 0 20px; /* Added padding for better mobile layout */
 }
 
 .mensagem-azul {
@@ -78,27 +77,12 @@ button {
 
 button:hover {
     background-color: #010CBA;
-    font-size: 14px;
+	font-size: 14px;
 }
 
 #resultado-sorteio {
     color: #f00;
-    font-size: 25px;
+    font-size: 24px;
     margin-top: 40px;
-    background-image: url("https://pa1.aminoapps.com/6711/b8b0d3d214927df0d7076b14579d36fa2240d5e8_hq.gif");
-}
-
-/* Media Query for screens smaller than 600px */
-@media (max-width: 600px) {
-    body {
-        background-size: contain;
-    }
-    
-    .container {
-        max-width: 100%; /* Full width for smaller screens */
-    }
-    
-    .participante {
-        width: 100%; /* Full width for smaller screens */
-    }
+	background-image: url("https://pa1.aminoapps.com/6711/b8b0d3d214927df0d7076b14579d36fa2240d5e8_hq.gif");
 }
