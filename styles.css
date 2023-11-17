@@ -1,0 +1,88 @@
+h1 {
+	font-family: 'Comic Sans MS', sans-serif;
+	font-size: 40px ;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+body {
+    font-family: 'Comic Sans MS', sans-serif;
+	font-size: 22px ;
+    color: #00f;
+    margin: 0;
+    padding: 0;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    max-width: 600px;
+    text-align: center;
+}
+
+.mensagem-azul {
+    color: #00f;
+    background-color: #fff;
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 5px;
+}
+
+.participantes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.participante {
+    background-color: #fff;
+    color: #00f;
+    padding: 10px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.participante:hover {
+    background-color: #e0e0e0;
+}
+
+.participante-selecionado {
+    background-color: #00f;
+    color: #fff;
+}
+
+.sorteio-container {
+    display: none;
+    margin-top: 20px;
+}
+
+button {
+    background-color: #008CBA;
+    color: white;
+    padding: 8px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #010CBA;
+	font-size: 14px;
+}
+
+#resultado-sorteio {
+    color: #f00;
+    font-size: 24px;
+    margin-top: 40px;
+	background-image: url("https://pa1.aminoapps.com/6711/b8b0d3d214927df0d7076b14579d36fa2240d5e8_hq.gif");
+}

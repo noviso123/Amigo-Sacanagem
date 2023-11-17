@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorteio Sacanagem</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body style="background-image: url('https://img.freepik.com/vetores-gratis/fundo-de-grade-de-neon_53876-91657.jpg?w=1380&t=st=1700242869~exp=1700243469~hmac=8743eb7095d48d53f9fa0253c050fd0f42ae353bc532e47311bd2c85a90c6f12');">
+    <div class="container">
+		<h1 class="mensagem-azul">Bem vindo!!<br>Ao meu amigo Sacanagem!!😈</h1>
+        <h2 class="mensagem-azul">Clique no seu nome abaixo para realizar o sorteio⬇</h2>
+
+        <div class="participantes" id="participantes">
+            <div class="participante" data-nome="Jhonatan" data-evitar="Lolo">😄 Jhonatan</div>
+            <div class="participante" data-nome="Lolo" data-evitar="Jhonatan">😄 Lolo</div>
+            <div class="participante" data-nome="Barbara" data-evitar="Lucas">😄 Barbara</div>
+            <div class="participante" data-nome="Lucas" data-evitar="Barbara">😄 Lucas</div>
+            <div class="participante" data-nome="Couto" data-evitar="Karla">😄 Couto</div>
+            <div class="participante" data-nome="Karla" data-evitar="Couto">😄 Karla</div>
+            <div class="participante" data-nome="Gabriel" data-evitar="Brenda">😄 Gabriel</div>
+            <div class="participante" data-nome="Brenda" data-evitar="Gabriel">😄 Brenda</div>
+        </div>
+
+        <div class="sorteio-container" id="sorteio-container">
+            <div id="resultado-sorteio"></div>
+            <h2><button onclick="realizarSorteio()">Realizar Sorteio</button></h2>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
