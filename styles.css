@@ -89,7 +89,7 @@ button:hover {
 }
 
 /* Media Query for screens smaller than 600px */
-@media (max-width: 600px) {
+@media (max-width: 1280px) {
     body {
         background-size: contain;
     }
