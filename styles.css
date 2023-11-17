@@ -1,6 +1,6 @@
 h1 {
     font-family: 'Comic Sans MS', sans-serif;
-    font-size: 40px;
+    font-size: 27px;
     margin: 0;
     padding: 0;
     display: flex;
@@ -10,7 +10,7 @@ h1 {
 
 body {
     font-family: 'Comic Sans MS', sans-serif;
-    font-size: 22px;
+    font-size: 15px;
     color: #00f;
     margin: 0;
     padding: 0;
@@ -83,7 +83,7 @@ button:hover {
 
 #resultado-sorteio {
     color: #f00;
-    font-size: 24px;
+    font-size: 25px;
     margin-top: 40px;
     background-image: url("https://pa1.aminoapps.com/6711/b8b0d3d214927df0d7076b14579d36fa2240d5e8_hq.gif");
 }
