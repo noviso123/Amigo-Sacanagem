@@ -13,45 +13,50 @@
 
         <div class="participantes" id="participantes">
             <!-- Participantes aqui -->
-			<div class="participantes" id="participantes">
-            <div class="participante" data-nome="Jhonatan" data-evitar="Lolo">😄 Jhonatan</div>
-            <div class="participante" data-nome="Lolo" data-evitar="Jhonatan">😄 Lolo</div>
-            <div class="participante" data-nome="Barbara" data-evitar="Lucas">😄 Barbara</div>
-            <div class="participante" data-nome="Lucas" data-evitar="Barbara">😄 Lucas</div>
-            <div class="participante" data-nome="Couto" data-evitar="Karla">😄 Couto</div>
-            <div class="participante" data-nome="Karla" data-evitar="Couto">😄 Karla</div>
-            <div class="participante" data-nome="Gabriel" data-evitar="Brenda">😄 Gabriel</div>
-            <div class="participante" data-nome="Brenda" data-evitar="Gabriel">😄 Brenda</div>
-        
-        
-			</div>
+				<div class="participantes" id="participantes">
+					<div class="participante" data-nome="Jhonatan" data-evitar="Lolo">😄 Jhonatan</div>
+					<div class="participante" data-nome="Lolo" data-evitar="Jhonatan">😄 Lolo</div>
+					<div class="participante" data-nome="Barbara" data-evitar="Lucas">😄 Barbara</div>
+					<div class="participante" data-nome="Lucas" data-evitar="Barbara">😄 Lucas</div>
+					<div class="participante" data-nome="Couto" data-evitar="Karla">😄 Couto</div>
+					<div class="participante" data-nome="Karla" data-evitar="Couto">😄 Karla</div>
+					<div class="participante" data-nome="Gabriel" data-evitar="Brenda">😄 Gabriel</div>
+					<div class="participante" data-nome="Brenda" data-evitar="Gabriel">😄 Brenda</div>
+				</div>
+        </div>
+<!-- Adicione esses scripts ao seu HTML -->
+        <script src="https://www.gstatic.com/firebasejs/9.2.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/9.2.0/firebase-database.js"></script>
+        <script>
+            // Credenciais do Firebase
+            const firebaseConfig = {
+                apiKey: "AIzaSyBXTrhDxkp2c_7LYlRAWdswwS2Vb0GExb0",
+                authDomain: "sorteio-amigo-sacanagem.firebaseapp.com",
+                projectId: "sorteio-amigo-sacanagem",
+                storageBucket: "sorteio-amigo-sacanagem.appspot.com",
+                messagingSenderId: "390637373010",
+                appId: "1:390637373010:web:a5b576c7efe2578a21418b"
+            };
+
+            // Inicialize o Firebase
+            firebase.initializeApp(firebaseConfig);
+
+            // Obtenha uma referência para o Realtime Database
+            const database = firebase.database();
+        </script>
+
+        <div class="participantes" id="participantes">
+            <!-- Participantes omitidos para brevidade -->
         </div>
 
         <div class="sorteio-container" id="sorteio-container">
             <div id="resultado-sorteio"></div>
             <h2><button onclick="realizarSorteio()">Realizar Sorteio</button></h2>
-        </div>
+        
+        </div
+</div>
     </div>
 
-    <script src="https://www.gstatic.com/firebasejs/9.2.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.2.0/firebase-database.js"></script>
     <script src="script.js"></script>
-    <script>
-        // Substitua com as suas credenciais do Firebase
-        const firebaseConfig = {
-            apiKey: "AIzaSyBXTrhDxkp2c_7LYlRAWdswwS2Vb0GExb0",
-            authDomain: "sorteio-amigo-sacanagem.firebaseapp.com",
-            projectId: "sorteio-amigo-sacanagem",
-            storageBucket: "sorteio-amigo-sacanagem.appspot.com",
-            messagingSenderId: "390637373010",
-            appId: "1:390637373010:web:a5b576c7efe2578a21418b"
-        };
-
-        // Inicialize o Firebase
-        firebase.initializeApp(firebaseConfig);
-
-        // Obtenha uma referência para o Realtime Database
-        const database = firebase.database();
-    </script>
 </body>
 </html>

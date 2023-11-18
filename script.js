@@ -40,7 +40,7 @@ function realizarSorteio() {
         // Verifica se todos foram sorteados
         verificarFinalizacaoSorteio(participantes);
     } else {
-        alert("Todos já foram sorteados ou você só pode sortear o próprio nome!");
+        alert("Todos já foram sorteados, obrigado por participar!");
         // Se desejar, adicione alguma ação adicional ao lidar com a situação de nenhum participante disponível
     }
 }
@@ -58,26 +58,4 @@ function podeSortear(nomeSorteado, nomeSorteador) {
     };
 
     return !restricoes[nomeSorteador] || !restricoes[nomeSorteador].includes(nomeSorteado);
-}
-
-function reiniciarSorteio() {
-    // Reinicialize as variáveis necessárias
-    participanteSelecionado = null;
-    participantesSorteados = [];
-
-    // Limpe a interface ou realize outras ações necessárias
-    document.getElementById("resultado-sorteio").innerHTML = "";
-    // Adicione outras ações de reinicialização, se necessário
-}
-
-function verificarFinalizacaoSorteio(participantes) {
-    if (participantesSorteados.length === participantes.length) {
-        const resposta = confirm("Todos foram sorteados. Deseja reiniciar o sorteio?");
-        if (resposta) {
-            reiniciarSorteio();
-        } else {
-            alert("Sorteio finalizado. Obrigado por participar!");
-            // Limpar a interface ou fazer outras ações necessárias ao encerrar o sorteio
-        }
-    }
 }
