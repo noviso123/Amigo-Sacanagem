@@ -12,6 +12,8 @@
         <h2>Clique no seu nome abaixo para realizar o sorteio ⬇</h2>
 
         <div class="participantes" id="participantes">
+            <!-- Participantes aqui -->
+			<div class="participantes" id="participantes">
             <div class="participante" data-nome="Jhonatan" data-evitar="Lolo">😄 Jhonatan</div>
             <div class="participante" data-nome="Lolo" data-evitar="Jhonatan">😄 Lolo</div>
             <div class="participante" data-nome="Barbara" data-evitar="Lucas">😄 Barbara</div>
@@ -20,6 +22,9 @@
             <div class="participante" data-nome="Karla" data-evitar="Couto">😄 Karla</div>
             <div class="participante" data-nome="Gabriel" data-evitar="Brenda">😄 Gabriel</div>
             <div class="participante" data-nome="Brenda" data-evitar="Gabriel">😄 Brenda</div>
+        
+        
+			</div>
         </div>
 
         <div class="sorteio-container" id="sorteio-container">
@@ -34,14 +39,12 @@
     <script>
         // Substitua com as suas credenciais do Firebase
         const firebaseConfig = {
-        apiKey: "AIzaSyBXTrhDxkp2c_7LYlRAWdswwS2Vb0GExb0",
-		authDomain: "sorteio-amigo-sacanagem.firebaseapp.com",
-		databaseURL: "https://sorteio-amigo-sacanagem-default-rtdb.firebaseio.com",
-		projectId: "sorteio-amigo-sacanagem",
-		storageBucket: "sorteio-amigo-sacanagem.appspot.com",
-		messagingSenderId: "390637373010",
-		appId: "1:390637373010:web:a5b576c7efe2578a21418b",
-		measurementId: "G-KGLV1576M0"
+            apiKey: "AIzaSyBXTrhDxkp2c_7LYlRAWdswwS2Vb0GExb0",
+            authDomain: "sorteio-amigo-sacanagem.firebaseapp.com",
+            projectId: "sorteio-amigo-sacanagem",
+            storageBucket: "sorteio-amigo-sacanagem.appspot.com",
+            messagingSenderId: "390637373010",
+            appId: "1:390637373010:web:a5b576c7efe2578a21418b"
         };
 
         // Inicialize o Firebase
