@@ -13,6 +13,11 @@ document.addEventListener("DOMContentLoaded", function() {
             sorteioContainer.style.display = "block";
         });
     });
+
+    // Carrega os participantes sorteados armazenados no Firebase Realtime Database
+    database.ref('participantesSorteados').on('value', function(snapshot) {
+        participantesSorteados = snapshot.val() || [];
+    });
 });
 
 function realizarSorteio() {
@@ -28,6 +33,9 @@ function realizarSorteio() {
 
         participantesSorteados.push(amigoSecreto);
         document.getElementById("resultado-sorteio").innerHTML = "🎉 Você sorteou: <span style='color: #f00;'>" + amigoSecreto + "😈 </span style='color: #f00;'>";
+
+        // Armazene os participantes sorteados no Firebase Realtime Database
+        database.ref('participantesSorteados').set(participantesSorteados);
     } else {
         alert("Todos já foram sorteados ou você só pode sortear o próprio nome!");
     }

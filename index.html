@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sorteio Sacanagem</title>
+    <title>Sorteio Amigo Sacanagem</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body style="background-image: url('https://img.freepik.com/vetores-gratis/fundo-de-grade-de-neon_53876-91657.jpg?w=1380&t=st=1700242869~exp=1700243469~hmac=8743eb7095d48d53f9fa0253c050fd0f42ae353bc532e47311bd2c85a90c6f12');">
+<body>
     <div class="container">
-		<h1 class="mensagem-azul">Bem vindo!!<br>Ao meu amigo Sacanagem!!😈</h1>
-        <h2 class="mensagem-azul">Clique no seu nome abaixo para realizar o sorteio⬇</h2>
+        <h1>Bem-vindo ao Amigo Sacanagem!! 😈</h1>
+        <h2>Clique no seu nome abaixo para realizar o sorteio ⬇</h2>
 
         <div class="participantes" id="participantes">
             <div class="participante" data-nome="Jhonatan" data-evitar="Lolo">😄 Jhonatan</div>
@@ -28,6 +28,27 @@
         </div>
     </div>
 
+    <script src="https://www.gstatic.com/firebasejs/9.2.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.2.0/firebase-database.js"></script>
     <script src="script.js"></script>
+    <script>
+        // Substitua com as suas credenciais do Firebase
+        const firebaseConfig = {
+        apiKey: "AIzaSyBXTrhDxkp2c_7LYlRAWdswwS2Vb0GExb0",
+		authDomain: "sorteio-amigo-sacanagem.firebaseapp.com",
+		databaseURL: "https://sorteio-amigo-sacanagem-default-rtdb.firebaseio.com",
+		projectId: "sorteio-amigo-sacanagem",
+		storageBucket: "sorteio-amigo-sacanagem.appspot.com",
+		messagingSenderId: "390637373010",
+		appId: "1:390637373010:web:a5b576c7efe2578a21418b",
+		measurementId: "G-KGLV1576M0"
+        };
+
+        // Inicialize o Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        // Obtenha uma referência para o Realtime Database
+        const database = firebase.database();
+    </script>
 </body>
 </html>
