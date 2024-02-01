@@ -1,62 +1,344 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sorteio Amigo Sacanagem</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Sorteio Amigo Oculto</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input,
+        button {
+            margin-bottom: 16px;
+        }
+
+        input {
+            width: calc(100% - 16px);
+            padding: 8px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .botao-verde {
+            background-color: #2196F3;
+            border: none;
+            color: #fff;
+        }
+
+        .botao-azul {
+            background-color: #2196F3;
+            border: none;
+            color: #fff;
+        }
+
+        .botao-vermelho {
+            background-color: #f44336;
+            border: none;
+            color: #fff;
+        }
+
+        .participantes {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .participante {
+            position: relative;
+            background-color: #2196F3;
+            color: #fff;
+            padding: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .participante:hover {
+            background-color: #1565C0;
+        }
+
+        .sorteio-container,
+        .resultado-container {
+            display: none;
+            background-color: #2196F3;
+            color: #fff;
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 20px;
+        }
+
+        .resultado-individual {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 4px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 1;
+            color: #000;
+        }
+
+        .resultado-individual.active {
+            display: block;
+        }
+
+        .instrucoes {
+            text-align: left;
+            margin-top: 20px;
+        }
+    </style>
 </head>
+
 <body>
     <div class="container">
-        <h1>Bem-vindo ao Amigo Sacanagem!! 😈</h1>
-        <h2>Clique no seu nome abaixo para realizar o sorteio ⬇</h2>
+        <h1>Bem-vindo ao Sorteio Amigo Oculto!</h1>
 
-        <div class="participantes" id="participantes">
-            <!-- Participantes aqui -->
-				<div class="participantes" id="participantes">
-					<div class="participante" data-nome="Jhonatan" data-evitar="Lolo">😄 Jhonatan</div>
-					<div class="participante" data-nome="Lolo" data-evitar="Jhonatan">😄 Lolo</div>
-					<div class="participante" data-nome="Barbara" data-evitar="Lucas">😄 Barbara</div>
-					<div class="participante" data-nome="Lucas" data-evitar="Barbara">😄 Lucas</div>
-					<div class="participante" data-nome="Couto" data-evitar="Karla">😄 Couto</div>
-					<div class="participante" data-nome="Karla" data-evitar="Couto">😄 Karla</div>
-					<div class="participante" data-nome="Gabriel" data-evitar="Brenda">😄 Gabriel</div>
-					<div class="participante" data-nome="Brenda" data-evitar="Gabriel">😄 Brenda</div>
-				</div>
+        <!-- Tela de solicitação do número de participantes -->
+        <div id="form-participantes">
+            <label for="numeroParticipantes">Número de Participantes:</label>
+            <input type="number" id="numeroParticipantes">
+            <button class="botao-azul" onclick="solicitarNomes()">Avançar</button>
+            <div class="instrucoes" id="instrucoes-form-participantes">
+                <p><strong>Instruções:</strong></p>
+                <p>1. Insira o número de participantes.</p>
+                <p>2. Clique em "Avançar" para inserir os nomes dos participantes.</p>
+            </div>
+            <!-- Resumo Tela de solicitação do número de participantes -->
+            <div class="instrucoes" id="resumo-form-participantes" style="display: none;">
+                <p><strong>Resumo:</strong></p>
+                <p>Nesta etapa, você informará o número de participantes do sorteio.</p>
+            </div>
         </div>
-<!-- Adicione esses scripts ao seu HTML -->
-        <script src="https://www.gstatic.com/firebasejs/9.2.0/firebase-app.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/9.2.0/firebase-database.js"></script>
+
+        <!-- Tela de inserção de nomes dos participantes -->
+        <div id="inserir-nomes" style="display: none;">
+            <h2>Informe os nomes dos participantes:</h2>
+            <div id="nomes-container" class="participantes"></div>
+            <button class="botao-azul" onclick="avançarParaSorteio()">Sortear</button>
+            <div class="instrucoes" id="instrucoes-inserir-nomes">
+                <p><strong>Instruções:</strong></p>
+                <p>1. Insira os nomes dos participantes nos campos acima.</p>
+                <p>2. Clique em "Sortear" para realizar o sorteio.</p>
+                <p>3. Clique no nome de um participante para ver quem ele tirou.</p>
+                <p>4. Após o sorteio, o botão "Reiniciar" estará disponível para iniciar um novo sorteio.</p>
+            </div>
+            <!-- Resumo Tela de inserção de nomes dos participantes -->
+            <div class="instrucoes" id="resumo-inserir-nomes" style="display: none;">
+                <p><strong>Resumo:</strong></p>
+                <p>Nesta etapa, você informará os nomes dos participantes.</p>
+            </div>
+        </div>
+
+        <!-- Sorteio Container -->
+        <div id="sorteio-container" class="sorteio-container" style="display: none;">
+            <!-- Conteúdo será adicionado dinamicamente -->
+        </div>
+
+        <!-- Tela de resultado do sorteio -->
+        <div id="resultado-sorteio" style="display: none;">
+            <div id="resultado-sorteio-container" class="participantes">
+                <!-- Conteúdo será adicionado dinamicamente -->
+            </div>
+            <div class="instrucoes" id="instrucoes-resultado-sorteio">
+                <p><strong>Instruções:</strong></p>
+                <p>1. Clique no nome de um participante para ver quem ele tirou.</p>
+                <p>2. Ao finalizar, clique em "Reiniciar" para iniciar um novo sorteio.</p>
+            </div>
+        </div>
+
+        <!-- Botão de Reinício -->
+        <button id="reiniciar" class="botao-vermelho" style="display: none;" onclick="reiniciarPagina()">Reiniciar</button>
+
         <script>
-            // Credenciais do Firebase
-            const firebaseConfig = {
-                apiKey: "AIzaSyBXTrhDxkp2c_7LYlRAWdswwS2Vb0GExb0",
-                authDomain: "sorteio-amigo-sacanagem.firebaseapp.com",
-                projectId: "sorteio-amigo-sacanagem",
-                storageBucket: "sorteio-amigo-sacanagem.appspot.com",
-                messagingSenderId: "390637373010",
-                appId: "1:390637373010:web:a5b576c7efe2578a21418b"
-            };
+            // Variáveis
+            let participantes = [];
+            let sorteioConcluido = false;
+            let resultadosIndividuais = [];
 
-            // Inicialize o Firebase
-            firebase.initializeApp(firebaseConfig);
+            // Função chamada quando o DOM é carregado
+            document.addEventListener("DOMContentLoaded", function () {
+                document.getElementById("form-participantes").style.display = "block";
+                exibirInstrucoes("instrucoes-form-participantes");
+            });
 
-            // Obtenha uma referência para o Realtime Database
-            const database = firebase.database();
+            // Função para exibir instruções dinâmicas
+            function exibirInstrucoes(elementId) {
+                const instrucoesElement = document.getElementById(elementId);
+                instrucoesElement.style.display = "block";
+            }
+
+            // Função para solicitar quantidade de participantes
+            function solicitarNomes() {
+                const numeroParticipantes = parseInt(document.getElementById("numeroParticipantes").value);
+
+                if (isNaN(numeroParticipantes) || numeroParticipantes < 2) {
+                    alert("Informe um número válido de participantes (mínimo 2).");
+                    return;
+                }
+
+                // Exibe a tela de inserção de nomes dos participantes
+                document.getElementById("form-participantes").style.display = "none";
+                document.getElementById("inserir-nomes").style.display = "block";
+
+                // Exibe instruções dinâmicas
+                exibirInstrucoes("instrucoes-inserir-nomes");
+
+                // Exibe resumo
+                document.getElementById("resumo-form-participantes").style.display = "block";
+
+                // Cria campos de input para os nomes
+                for (let i = 1; i <= numeroParticipantes; i++) {
+                    const inputNome = document.createElement("input");
+                    inputNome.type = "text";
+                    inputNome.placeholder = `Nome do participante ${i}`;
+                    inputNome.addEventListener("input", function () {
+                        participantes[i - 1] = this.value.trim();
+                    });
+                    document.getElementById("nomes-container").appendChild(inputNome);
+                }
+            }
+
+            // Função para avançar para a tela de sorteio
+            function avançarParaSorteio() {
+                const nomesPreenchidos = participantes.every(nome => nome);
+                if (nomesPreenchidos) {
+                    // Esconde a tela de inserção de nomes dos participantes
+                    document.getElementById("inserir-nomes").style.display = "none";
+
+                    // Exibe a tela de sorteio
+                    document.getElementById("sorteio-container").style.display = "block";
+
+                    // Realiza o sorteio
+                    realizarSorteio();
+
+                    // Exibe o botão de reinício
+                    document.getElementById("reiniciar").style.display = "block";
+                } else {
+                    alert("Preencha todos os nomes dos participantes.");
+                }
+            }
+
+            // Função para realizar o sorteio
+            function realizarSorteio() {
+                resultadosIndividuais = [];
+                const participantesSorteados = sortear(participantes);
+
+                // Exibe os resultados na tela de sorteio
+                const resultadoSorteioContainer = document.getElementById("sorteio-container");
+                resultadoSorteioContainer.innerHTML = "<h2>Resultado do Sorteio:</h2>";
+
+                participantes.forEach((participante, indice) => {
+                    const divParticipante = document.createElement("div");
+                    divParticipante.className = "participante";
+                    divParticipante.textContent = participante;
+
+                    const resultadoIndividual = document.createElement("div");
+                    resultadoIndividual.className = "resultado-individual";
+                    resultadoIndividual.id = `resultado-${indice}`;
+                    resultadoIndividual.textContent = `Você sorteou: ${participantesSorteados[indice]}`;
+                    divParticipante.appendChild(resultadoIndividual);
+
+                    divParticipante.addEventListener("click", () => {
+                        exibirResultadoIndividual(indice);
+                    });
+
+                    resultadoSorteioContainer.appendChild(divParticipante);
+
+                    // Armazena os resultados individuais
+                    resultadosIndividuais[indice] = participantesSorteados[indice];
+                });
+
+                sorteioConcluido = true;
+
+                // Exibe a tela de resultado do sorteio
+                document.getElementById("resultado-sorteio").style.display = "block";
+
+                // Exibe instruções dinâmicas
+                exibirInstrucoes("instrucoes-resultado-sorteio");
+            }
+
+            // Função para exibir o resultado individual
+            function exibirResultadoIndividual(indice) {
+                if (!sorteioConcluido) {
+                    alert("Realize o sorteio antes de visualizar os resultados individuais.");
+                    return;
+                }
+
+                const resultadoIndividual = document.getElementById(`resultado-${indice}`);
+                resultadoIndividual.classList.toggle("active");
+
+                // Exibe apenas o resultado do próprio participante
+                resultadoIndividual.textContent = `Você sorteou: ${resultadosIndividuais[indice]}`;
+            }
+
+            // Função para reiniciar a página
+            function reiniciarPagina() {
+                location.reload();
+            }
+
+            // Função para sortear os participantes
+            function sortear(participantes) {
+                const participantesEmbaralhados = [...participantes];
+                const sorteados = [];
+                
+                for (let i = 0; i < participantes.length; i++) {
+                    const sorteado = sortearIndividual(participantes[i], sorteados);
+                    sorteados.push(sorteado);
+                }
+
+                return sorteados;
+            }
+
+            // Função para sortear individualmente respeitando as regras
+            function sortearIndividual(nome, sorteados) {
+                let sorteado = nome;
+                while (sorteados.includes(sorteado) || sorteado === nome) {
+                    sorteado = participantes[Math.floor(Math.random() * participantes.length)];
+                }
+                return sorteado;
+            }
         </script>
-
-        <div class="participantes" id="participantes">
-            <!-- Participantes omitidos para brevidade -->
-        </div>
-
-        <div class="sorteio-container" id="sorteio-container">
-            <div id="resultado-sorteio"></div>
-            <h2><button onclick="realizarSorteio()">Realizar Sorteio</button></h2>
-        
-        </div
-</div>
     </div>
-
-    <script src="script.js"></script>
 </body>
+
 </html>
